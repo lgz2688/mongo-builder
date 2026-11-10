@@ -57,6 +57,7 @@ class Mongo
     {
         $instance = clone $this;
         $instance->collection = $collection;
+        $instance->reset();
         return $instance;
     }
 
@@ -679,9 +680,6 @@ class Mongo
     private function reset(): void
     {
         $this->field = [];
-        $this->groupFields = [];
-        $this->aggregateFields = [];
-        $this->havingConditions = [];
-        $this->sortOrder = [];
     }
 }
+
