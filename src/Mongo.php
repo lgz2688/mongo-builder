@@ -57,13 +57,9 @@ class Mongo
     {
         $instance = clone $this;
         $instance->collection = $collection;
-        $instance->reset();
         return $instance;
     }
 
-    /**
-     * 获取底层原生集合对象
-     */
     public function rawCollection(?string $name = null, array $options = []): Collection
     {
         return $this->client->selectCollection($this->database, $name ?? $this->collection, $options);
@@ -682,6 +678,10 @@ class Mongo
 
     private function reset(): void
     {
-
+        $this->field = [];
+        $this->groupFields = [];
+        $this->aggregateFields = [];
+        $this->havingConditions = [];
+        $this->sortOrder = [];
     }
 }
