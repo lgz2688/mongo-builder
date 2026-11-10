@@ -1,0 +1,30 @@
+{
+  "name": "lgz2688/mongo-builder",
+  "description": "A chainable MongoDB builder with a MySQL-like API, pluggable ID generation and optional relational dual-write.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": ["mongodb", "query-builder", "orm", "database"],
+  "authors": [
+    {
+      "name": "lgz2688"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "ext-mongodb": "*",
+    "mongodb/mongodb": "^1.17"
+  },
+  "suggest": {
+    "ext-redis": "Required if you use the Redis-based ID generator in your application."
+  },
+  "autoload": {
+    "psr-4": {
+      "Lgz2688\\MongoBuilder\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
