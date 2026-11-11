@@ -4,7 +4,6 @@ namespace Lgz2688\MongoBuilder;
 
 use Lgz2688\MongoBuilder\Contract\IdGeneratorInterface;
 use Lgz2688\MongoBuilder\Contract\SyncWriterInterface;
-use Lgz2688\MongoBuilder\IdGenerator\MongoSequenceIdGenerator;
 use Lgz2688\MongoBuilder\Sync\NullSyncWriter;
 use MongoDB\BSON\Regex;
 use MongoDB\Client;
@@ -39,7 +38,7 @@ class Mongo
         $this->client   = new Client($config->getUri(), $config->getUriOptions());
         $this->database = $config->getDatabase();
 
-        $this->idGenerator = $idGenerator ?? new MongoSequenceIdGenerator($this->client, $this->database);
+        $this->idGenerator = $idGenerator;
         $this->syncWriter  = $syncWriter ?? new NullSyncWriter();
     }
 
@@ -679,7 +678,15 @@ class Mongo
 
     private function reset(): void
     {
+        $this->where = [];
+        $this->data = [];
+        $this->order = [];
+        $this->limit = 0;
         $this->field = [];
+        $this->groupFields = [];
+        $this->aggregateFields = [];
+        $this->havingConditions = [];
+        $this->sortOrder = [];
     }
 }
 

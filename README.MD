@@ -11,23 +11,10 @@ composer require lgz2688/mongo-builder
 ## 基本用法
 
 ```php
-use Lgz2688\MongoBuilder\Config;
-use Lgz2688\MongoBuilder\Mongo;
-
-$config = Config::make(
-uri: 'mongodb://127.0.0.1:27017',
-database: 'your_db',
-username: 'user',
-password: 'pass',
-authSource: 'admin',
-);
-
-$mongo = new Mongo($config);
-
 // 查询
 $row  = $mongo->table('users')->where(['id' => 1])->find();
 $list = $mongo->table('users')->where([['age', '>', 18]])->order(['id' => 'desc'])->limit(10)->select();
 
-// 写入（第二个参数为是否双写到关系库，默认由注入的 SyncWriter 决定）
+// 写入
 $id = $mongo->table('users')->insert(['name' => 'Tom', 'age' => 20]);
 ```
